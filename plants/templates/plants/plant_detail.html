@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ plant.name }}</title>
+    <link rel="stylesheet" href="{% static 'plants/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body class="{% if request.COOKIES.theme == 'dark' %}dark-mode{% endif %}">
+    <canvas id="leavesCanvas"></canvas>
+
+    <header>
+        <h1>{{ plant.name }}</h1>
+        <button id="theme-toggle">🌙</button>
+        <a href="{% url 'plants:plant_list' %}" class="btn back">← Volver</a>
+    </header>
+
+    <main>
+        <img src="{% if plant.image %}{{ plant.image.url }}{% else %}{% static 'plants/placeholder.png' %}{% endif %}" alt="{{ plant.name }}" style="width:300px; display:block; margin:1rem auto; border-radius:10px;">
+        <p><strong>Especie:</strong> {{ plant.species }}</p>
+        <p><strong>Riego:</strong> {{ plant.watering_interval }} días</p>
+        <p><strong>Precio:</strong> ${{ plant.price }}</p>
+        <p><strong>Descripción:</strong> {{ plant.description }}</p>
+    </main>
+
+    <script src="{% static 'plants/magic_leaves.js' %}"></script>
+    <script src="{% static 'plants/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+/* ---------- GENERAL ---------- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #d4f0e7, #fff6f9);
+    transition: background 0.3s, color 0.3s;
+    color: #333;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #2e2e2e, #1a1a1a);
+    color: #eee;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(90deg, #a0e9d2, #b2dffb);
+    border-bottom: 2px solid #cde1f9;
+    position: relative;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #3a6;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+input, select, button {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #3a6;
+    box-shadow: 0 0 5px rgba(58, 166, 138, 0.5);
+}
+
+button {
+    cursor: pointer;
+    background: #3a6;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background: #4fc3a1;
+}
+
+/* ---------- PLANT LIST ---------- */
+.plant-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: linear-gradient(145deg, #f6fff8, #e0f7f1);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    width: 220px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.card-buttons .btn {
+    flex: 1 1 45%;
+    padding: 8px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.btn.detail {
+    background: #a0e9d2;
+    color: #1a6;
+}
+
+.btn.detail:hover {
+    background: #8dd8c0;
+}
+
+.btn.edit {
+    background: #fbe7c6;
+    color: #b36c00;
+}
+
+.btn.edit:hover {
+    background: #fcd9a3;
+}
+
+.btn.delete {
+    background: #f6b8b8;
+    color: #b30000;
+}
+
+.btn.delete:hover {
+    background: #f38a8a;
+}
+
+body.dark-mode .btn.detail { color: #d4fff4; }
+body.dark-mode .btn.edit { color: #fff1d6; }
+body.dark-mode .btn.delete { color: #ffbebe; }
+
+.btn.favorite {
+    background: transparent;
+    color: #e33;
+    font-size: 1.2rem;
+}
+
+.btn.favorite.favorited {
+    color: #ff6b6b;
+}
+
+body.dark-mode .card {
+    background: linear-gradient(145deg, #444, #555);
+    color: #eee;
+}
+
+body.dark-mode .card-buttons .btn {
+    color: #eee;
+}
+
+.add-plant-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #3a6;
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.add-plant-btn:hover {
+    background: #4fc3a1;
+}
+
+/* ---------- PLANT FORM ---------- */
+.add-plant-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background: linear-gradient(145deg, #f6fff8, #e0f7f1);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-plant-form label {
+    font-weight: 600;
+    color: #2a5;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.add-plant-form input,
+.add-plant-form textarea,
+.add-plant-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.add-plant-form input:focus,
+.add-plant-form textarea:focus,
+.add-plant-form select:focus {
+    border-color: #3a6;
+    box-shadow: 0 0 5px rgba(58, 166, 138, 0.4);
+}
+
+.add-plant-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.add-plant-form input[type="file"] {
+    border: 1px dashed #3a6;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f0fff5;
+    cursor: pointer;
+}
+
+.add-plant-form button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #3a6;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.add-plant-form button:hover {
+    background: #4fc3a1;
+}
+
+.add-plant-form .btn.back {
+    display: inline-block;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    background: #ccc;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.add-plant-form .btn.back:hover {
+    background: #bbb;
+}
+
+/* Dark mode */
+body.dark-mode .add-plant-form {
+    background: linear-gradient(145deg, #444, #555);
+    color: #eee;
+}
+
+body.dark-mode .add-plant-form input,
+body.dark-mode .add-plant-form textarea,
+body.dark-mode .add-plant-form select {
+    background: #666;
+    border-color: #aaa;
+    color: #eee;
+}
+
+body.dark-mode .add-plant-form input[type="file"] {
+    background: #555;
+    border-color: #aaa;
+    color: #eee;
+}
+
+body.dark-mode .add-plant-form .btn.back {
+    background: #777;
+    color: #eee;
+}
+
+/* ---------- CANVAS ---------- */
+#leavesCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+    .card {
+        width: 90%;
+    }
+    .controls {
+        flex-direction: column;
+    }
+}

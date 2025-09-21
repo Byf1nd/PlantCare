@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if form.instance.pk %}✏️ Editar Planta{% else %}➕ Añadir Planta{% endif %}</title>
+    <link rel="stylesheet" href="{% static 'plants/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+          integrity="sha512-pap+zEDrceO3DkPB7zBBVRU5hOW4V+6qY7V7PTZz9kQzRlV4Tx1FYo4Wsc8ylAwM0lI0IMLkHxxfZ6OQtq35EA==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="{% if request.COOKIES.theme == 'dark' %}dark-mode{% endif %}">
+    <header>
+        <h1>{% if form.instance.pk %}✏️ Editar Planta{% else %}➕ Añadir Nueva Planta{% endif %}</h1>
+        <button id="theme-toggle">🌙</button>
+    </header>
+
+    <main>
+        <form class="add-plant-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+
+            <div class="form-group">
+                {{ form.species.label_tag }}
+                {{ form.species }}
+            </div>
+
+            <div class="form-group">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+
+            <div class="form-group">
+                {{ form.watering_interval.label_tag }}
+                {{ form.watering_interval }}
+            </div>
+
+            <div class="form-group">
+                {{ form.price.label_tag }}
+                {{ form.price }}
+            </div>
+
+            <div class="form-group">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+
+            <button type="submit" class="btn submit">
+                {% if form.instance.pk %}Guardar Cambios{% else %}Crear Planta{% endif %}
+            </button>
+            <a href="{% url 'plants:plant_list' %}" class="btn back">← Volver</a>
+        </form>
+    </main>
+
+    <script src="{% static 'plants/main.js' %}"></script>
+</body>
+</html>

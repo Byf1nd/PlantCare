@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Plantas 🌱</title>
+    <link rel="stylesheet" href="{% static 'plants/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-pap+zEDrceO3DkPB7zBBVRU5hOW4V+6qY7V7PTZz9kQzRlV4Tx1FYo4Wsc8ylAwM0lI0IMLkHxxfZ6OQtq35EA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="{% if request.COOKIES.theme == 'dark' %}dark-mode{% endif %}">
+
+    <!-- Hojas animadas -->
+    <canvas id="leavesCanvas"></canvas>
+
+    <header>
+        <h1>Mis Plantas 🌱</h1>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Buscar planta...">
+            <select id="speciesFilter">
+                <option value="">Todas las especies</option>
+            </select>
+            <select id="sortFilter">
+                <option value="">Ordenar</option>
+                <option value="name">Nombre</option>
+                <option value="price">Precio</option>
+                <option value="watering_interval">Riego</option>
+            </select>
+            <button id="theme-toggle">🌙</button>
+        </div>
+
+        <a href="{% url 'plants:plant_create' %}" class="add-plant-btn">➕ Añadir Planta</a>
+    </header>
+
+    <main>
+        <div class="plant-cards">
+            {% for plant in object_list %}
+            <div class="card" data-name="{{ plant.name }}" data-species="{{ plant.species }}" data-price="{{ plant.price }}" data-watering="{{ plant.watering_interval }}">
+                <img src="{% if plant.image %}{{ plant.image.url }}{% else %}{% static 'plants/placeholder.png' %}{% endif %}" alt="{{ plant.name }}">
+                <h2><i class="fa-solid fa-leaf"></i> {{ plant.name }}</h2>
+                <p><i class="fa-solid fa-seedling"></i> <strong>Especie:</strong> {{ plant.species }}</p>
+                <p><i class="fa-solid fa-droplet"></i> <strong>Riego:</strong> {{ plant.watering_interval }} días</p>
+                <p><i class="fa-solid fa-dollar-sign"></i> <strong>Precio:</strong> ${{ plant.price }}</p>
+                <div class="card-buttons">
+                    <a href="{% url 'plants:plant_detail' plant.pk %}" class="btn detail">Detalle</a>
+                    <a href="{% url 'plants:plant_update' plant.pk %}" class="btn edit">Editar</a>
+                    <a href="{% url 'plants:plant_delete' plant.pk %}" class="btn delete">Eliminar</a>
+                    <button class="btn favorite"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <script src="{% static 'plants/magic_leaves.js' %}"></script>
+    <script src="{% static 'plants/main.js' %}"></script>
+</body>
+</html>

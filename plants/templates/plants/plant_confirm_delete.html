@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Planta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-pap+zEDrceO3DkPB7zBBVRU5hOW4V+6qY7V7PTZz9kQzRlV4Tx1FYo4Wsc8ylAwM0lI0IMLkHxxfZ6OQtq35EA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'plants/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="delete-card">
+            <h1>Eliminar Planta ❌</h1>
+            <p>¿Seguro que quieres eliminar <strong>{{ object.name }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-delete">Eliminar</button>
+                <a href="{% url 'plants:plant_list' %}" class="btn btn-back">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
